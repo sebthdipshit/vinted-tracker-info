@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vinted Tracker</title>
+  <meta name="description" content="Vinted Tracker is a private, local desktop tool that reads Vinted sales emails in Gmail with read-only access and calculates sales revenue on the user's own computer.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236d3fe0'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href="./">
+        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#6d3fe0"/><path d="M9 17l5 5 9-11" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Vinted Tracker
+      </a>
+      <nav class="site" aria-label="Main">
+        <a href="./" aria-current="page">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="lang"><a href="#english">English</a><a href="#dansk" lang="da">Dansk</a></div>
+
+      <section id="english">
+        <h1>Vinted Tracker</h1>
+        <p class="lead">A private desktop tool that reads Vinted sales emails in Gmail with read-only access and calculates sales revenue locally on the user's own Mac.</p>
+
+        <div class="card note">
+          <strong>Private, non-commercial tool.</strong> Vinted Tracker is not a public service and is not offered to other users.
+          It is used only by its developer with the developer's own Gmail accounts. It is not affiliated with, endorsed by or
+          sponsored by Vinted or Google.
+        </div>
+
+        <h2>What it does</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Reads Vinted emails</h3>
+            <p>Searches the connected Gmail account for messages from Vinted, such as "item sold" and "order completed" notifications.</p>
+          </div>
+          <div class="card">
+            <h3>Recognises sales</h3>
+            <p>Extracts the transaction ID, item name, date and amounts using fixed, explicit rules. Unclear emails are marked for manual review.</p>
+          </div>
+          <div class="card">
+            <h3>Shows revenue locally</h3>
+            <p>Stores the results in a local database and shows revenue and sales in a dashboard that runs only on the same computer.</p>
+          </div>
+        </div>
+
+        <h2>How it uses Google data</h2>
+        <ul>
+          <li><strong>Read-only Gmail access</strong> (<code>gmail.readonly</code>). The app cannot send, delete or change emails.</li>
+          <li><strong>Optional profile picture</strong> (<code>openid</code>, <code>userinfo.profile</code>). Requested only if the user opts in, to show the account's picture in the local dashboard.</li>
+          <li><strong>Everything stays on the computer.</strong> There is no server, no cloud storage, no analytics and no advertising. Data is never sold or shared.</li>
+          <li><strong>Sign-in happens at Google.</strong> The app never sees or stores the Gmail password. Sign-in tokens are kept in the macOS Keychain.</li>
+          <li><strong>Access can be revoked at any time</strong> from the app or at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+        </ul>
+        <p>Full details: <a href="privacy.html">Privacy Policy</a>.</p>
+
+        <h2>Technical overview</h2>
+        <ul>
+          <li>Runs locally on macOS (Python and a local Next.js dashboard bound to <code>127.0.0.1</code>).</li>
+          <li>Uses a Google OAuth client of the type "Desktop app" with a loopback (<code>localhost</code>) redirect.</li>
+          <li>Several Gmail accounts can be connected. Each signs in separately.</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <section id="dansk" lang="da">
+        <h2 style="margin-top:0">Vinted Tracker (dansk)</h2>
+        <p class="lead">Et privat skrivebordsværktøj, der med kun læseadgang læser Vinted-salgsmails i Gmail og beregner omsætningen lokalt på brugerens egen Mac.</p>
+        <ul>
+          <li><strong>Privat og ikke-kommercielt.</strong> Bruges kun af udvikleren selv med egne Gmail-konti. Ikke tilknyttet Vinted eller Google.</li>
+          <li><strong>Kun læseadgang til Gmail.</strong> Værktøjet kan ikke sende, slette eller ændre mails.</li>
+          <li><strong>Alt bliver på computeren.</strong> Ingen server, ingen sky, ingen analyse eller reklame. Data sælges eller deles aldrig.</li>
+          <li><strong>Profilbillede er valgfrit</strong> og bruges kun i det lokale dashboard.</li>
+          <li>Adgangen kan altid tilbagekaldes i værktøjet eller på <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+        </ul>
+        <p>Læs mere i <a href="privacy.html#dansk">privatlivspolitikken</a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <span>Vinted Tracker · private, local tool</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </footer>
+</body>
+</html>

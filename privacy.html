@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy · Vinted Tracker</title>
+  <meta name="description" content="How Vinted Tracker accesses, uses, stores and deletes Google user data. Read-only Gmail access, local storage only, no sharing.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236d3fe0'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href="./">
+        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#6d3fe0"/><path d="M9 17l5 5 9-11" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Vinted Tracker
+      </a>
+      <nav class="site" aria-label="Main">
+        <a href="./">Home</a>
+        <a href="privacy.html" aria-current="page">Privacy Policy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="lang"><a href="#english">English</a><a href="#dansk" lang="da">Dansk</a></div>
+
+      <section id="english">
+        <h1>Privacy Policy</h1>
+        <p class="meta">Last updated: 17 October 2026</p>
+
+        <p>This policy explains how <strong>Vinted Tracker</strong> ("the app") accesses, uses, stores, shares and deletes
+        data, including data received from Google APIs. Vinted Tracker is a private, non-commercial desktop tool. It runs only on
+        its developer's own Mac and is used only with the developer's own Gmail accounts. It is not offered to the public and is not
+        affiliated with Vinted or Google.</p>
+
+        <div class="card note">
+          <strong>Limited Use disclosure.</strong> Vinted Tracker's use and transfer to any other app of information received from
+          Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services
+          User Data Policy</a>, including the Limited Use requirements.
+        </div>
+
+        <h2>1. Google permissions the app requests</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Permission (scope)</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td><code>https://www.googleapis.com/auth/gmail.readonly</code><br>Required</td>
+                  <td>To find and read Vinted notification emails so sales can be recognised. Read-only: the app cannot send, delete,
+                  label or change emails or settings.</td></tr>
+              <tr><td><code>openid</code> and <code>https://www.googleapis.com/auth/userinfo.profile</code><br>Optional</td>
+                  <td>Only if the user chooses to show the Google account's profile picture in the local dashboard. Without this, the
+                  app asks for Gmail read-only access only.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The app never sees or stores the Google account password. Sign-in takes place on Google's own pages in the browser.</p>
+
+        <h2>2. What the app reads</h2>
+        <ul>
+          <li><strong>Vinted emails only.</strong> Synchronisation searches Gmail for messages from Vinted sender domains. Each matching
+          message is read (headers such as sender, subject and date, and the message text) so the app can recognise sales,
+          cancellations, payouts and fees using fixed rules.</li>
+          <li><strong>Gmail address of the account.</strong> Read at sign-in, at each synchronisation and when the connection is checked,
+          to confirm that the right account is connected and to prevent the same account from being connected twice.</li>
+          <li><strong>Profile picture (optional).</strong> If enabled, the picture is downloaded from Google's image servers. The name
+          returned by Google is not stored.</li>
+          <li><strong>Diagnostics run by the user.</strong> The user can manually run local diagnostic commands that list or display
+          masked excerpts of selected messages in the computer's terminal. Their output is not stored by the app.</li>
+        </ul>
+
+        <h2>3. What the app stores, and where</h2>
+        <p>Everything is stored <strong>locally on the user's own computer</strong>. Nothing is uploaded to any server operated by the
+        developer or by third parties.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Data</th><th>Location</th></tr></thead>
+            <tbody>
+              <tr><td>Sales extracted from Vinted emails: transaction ID, item name, sale date, item price, postage, amount
+                  transferred to the Vinted balance, currency and status. Also payouts and fees (amount, currency, date).</td>
+                  <td>Local SQLite database, readable only by the user's macOS account</td></tr>
+              <tr><td>Per processed email: Gmail message ID, email date, email type, processing status and a short reason if
+                  manual review is needed. For "order completed" emails also the masked Vinted seller username and a hash of it, used to check
+                  that the email belongs to the right account. <strong>Email text is not stored.</strong></td>
+                  <td>Same local database</td></tr>
+              <tr><td>Per connected account: a masked Gmail address (for example <code>a***z@example.com</code>) and a SHA-256 hash of
+                  it, the masked Vinted username and its hash, connection status and time of last synchronisation.</td>
+                  <td>Same local database</td></tr>
+              <tr><td>OAuth access and refresh tokens</td>
+                  <td>macOS Keychain only. Never written to the database, files, Git or logs.</td></tr>
+              <tr><td>Profile picture (optional): the image file only, maximum 200 kB</td>
+                  <td>Local folder next to the database, readable only by the user</td></tr>
+              <tr><td>Automatic database backups made before database upgrades or rebuilds</td>
+                  <td>Local backup folder, readable only by the user</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Not stored:</strong> email bodies, attachments, buyers' names, usernames or addresses, and the full Gmail address in
+        plain text.</p>
+
+        <h2>4. How the data is used</h2>
+        <p>Data is used only to provide the app's own features to its user: recognising Vinted sales and showing revenue, sales and
+        items that need manual review in a dashboard on the same computer. The dashboard opens the database read-only and is bound to
+        <code>127.0.0.1</code>.</p>
+        <ul>
+          <li>No advertising, profiling, retargeting or interest-based ads.</li>
+          <li>No analytics or tracking. The dashboard's framework telemetry is disabled.</li>
+          <li>Google user data is not used to develop, improve or train generalised or non-personalised AI or machine-learning
+          models.</li>
+          <li>Google user data is not used to determine credit-worthiness or for lending purposes.</li>
+          <li>No one other than the user reads the data.</li>
+        </ul>
+
+        <h2>5. Sharing and transfers</h2>
+        <p>The app does not sell, rent, share or transfer Google user data to anyone. It has no backend server. The only network
+        connections it makes are to Google: to sign in, refresh and revoke access (<code>accounts.google.com</code>,
+        <code>oauth2.googleapis.com</code>), to read Gmail through the Gmail API (<code>gmail.googleapis.com</code>) and, if the
+        profile picture is enabled, to fetch it (<code>openidconnect.googleapis.com</code>, <code>*.googleusercontent.com</code>).</p>
+
+        <h2>6. Security</h2>
+        <ul>
+          <li>Tokens are kept in the macOS Keychain.</li>
+          <li>The database, backups and profile pictures are stored with permissions that only the user's macOS account can read.</li>
+          <li>Email addresses and Vinted usernames are stored only masked and as hashes.</li>
+          <li>Communication with Google uses HTTPS. Sign-in uses Google's OAuth 2.0 flow for desktop apps with a loopback redirect.</li>
+        </ul>
+
+        <h2>7. Retention and deletion</h2>
+        <p>Data is kept on the user's computer until the user deletes it. The user can at any time:</p>
+        <ul>
+          <li><strong>Disconnect an account</strong> with the app's command <code>python -m connector.konto fjern konto-N</code>. This
+          revokes the token at Google, deletes it from the Keychain, deletes the account's profile picture and deactivates the account.
+          Previously extracted sales remain in the local database until deleted.</li>
+          <li><strong>Revoke access from Google</strong> at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>
+          (select Vinted Tracker and remove access).</li>
+          <li><strong>Delete all data</strong> by deleting the app's local data folder (database, backups and profile pictures) and
+          removing the app's entries (service <code>dk.vinted-tracker.gmail</code>) from the macOS Keychain.</li>
+        </ul>
+        <p>Google may also end access on its own, for example when access is revoked, when a token has not been used for six months or
+        when the account password is changed.</p>
+
+        <h2>8. Changes to this policy</h2>
+        <p>If the way the app handles data changes, this page will be updated before the change takes effect, and the date above will be
+        changed.</p>
+
+        <h2>9. Contact</h2>
+        <p>Questions about this policy can be sent to the user support email shown on Google's consent screen for Vinted Tracker, or
+        raised as an issue in the <a href="https://github.com/sebthdipshit/vinted-tracker-info">public repository for this website</a>.</p>
+      </section>
+
+      <hr>
+
+      <section id="dansk" lang="da">
+        <h2 style="margin-top:0">Privatlivspolitik (dansk)</h2>
+        <p class="meta">Senest opdateret: 17. oktober 2026. Ved uoverensstemmelse gælder den engelske version ovenfor.</p>
+
+        <p><strong>Vinted Tracker</strong> er et privat, ikke-kommercielt skrivebordsværktøj, der kun kører på udviklerens egen Mac og
+        kun bruges med udviklerens egne Gmail-konti. Det er ikke tilknyttet Vinted eller Google.</p>
+
+        <div class="card note">
+          Vinted Trackers brug og overførsel til andre apps af oplysninger modtaget fra Google API'er overholder
+          <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+          herunder kravene om begrænset brug (Limited Use).
+        </div>
+
+        <h3>Tilladelser</h3>
+        <ul>
+          <li><code>gmail.readonly</code> (påkrævet): læse Vinted-mails. Kan ikke sende, slette eller ændre mails.</li>
+          <li><code>openid</code> og <code>userinfo.profile</code> (valgfrit): kun til kontoens profilbillede i det lokale dashboard.</li>
+        </ul>
+
+        <h3>Hvad læses</h3>
+        <p>Kun mails fra Vinteds afsenderdomæner, for at genkende salg, annulleringer, udbetalinger og gebyrer. Kontoens Gmail-adresse
+        læses ved login, synkronisering og statustjek for at bekræfte, at det er den rigtige konto.</p>
+
+        <h3>Hvad gemmes, og hvor</h3>
+        <ul>
+          <li>Kun lokalt på computeren: salg (transaktions-ID, varenavn, dato, beløb, valuta, status), udbetalinger og gebyrer,
+          Gmail-meddelelses-ID'er og mailtype, maskeret Gmail-adresse og Vinted-brugernavn samt hashes af dem.</li>
+          <li>Tokens ligger kun i macOS-nøgleringen. Profilbilledet (valgfrit) gemmes som en lokal billedfil.</li>
+          <li><strong>Gemmes ikke:</strong> mailtekst, vedhæftninger, køberes navne, brugernavne eller adresser og den fulde
+          Gmail-adresse i klartekst.</li>
+        </ul>
+
+        <h3>Brug og deling</h3>
+        <p>Data bruges kun til værktøjets egne funktioner på samme computer. Ingen reklame, analyse, sporing eller AI-træning. Data
+        sælges, deles eller overføres aldrig. Værktøjet har ingen server og forbinder kun til Google.</p>
+
+        <h3>Sletning</h3>
+        <ul>
+          <li>Fjern en konto med <code>python -m connector.konto fjern konto-N</code>. Det tilbagekalder adgangen hos Google, sletter
+          tokenet og profilbilledet. Tidligere salg bliver i den lokale database, indtil de slettes.</li>
+          <li>Tilbagekald adgangen på <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+          <li>Slet alt ved at slette værktøjets lokale datamappe og nøgleringselementerne (tjenesten <code>dk.vinted-tracker.gmail</code>).</li>
+        </ul>
+
+        <h3>Kontakt</h3>
+        <p>Via supportadressen på Googles samtykkeskærm for Vinted Tracker eller som et issue i
+        <a href="https://github.com/sebthdipshit/vinted-tracker-info">hjemmesidens offentlige repository</a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <span>Vinted Tracker · private, local tool</span>
+      <a href="./">Home</a>
+    </div>
+  </footer>
+</body>
+</html>
